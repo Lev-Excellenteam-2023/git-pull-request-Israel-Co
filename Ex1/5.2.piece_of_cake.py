@@ -8,10 +8,6 @@ def get_recipe_price(prices={}, optionals=[], **ingredients):
                         and the value is the amount tha necessary (in gram)
     :return: The total price
     """
-    total = 0
-    for p in prices:
-        if p in optionals:
-            continue
-        total = total + prices[p] * ingredients[p] // 100
-
+    total_prices = [prices[p] * ingredients[p] // 100 for p in prices if p not in optionals]
+    total = sum(total_prices)
     return total
