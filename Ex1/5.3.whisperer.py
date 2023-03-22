@@ -1,22 +1,21 @@
-def is_lowercase_letter(b):
-    if 93 <= b <= 122:
-        return True
-    else:
-        return False
+SIZE = 5
 
 
 def print_secret_messages(path):
+    res = ''
     with open(path, 'rb') as input_file:
-        msg = ''
-        for line in input_file:
-            for c in line:
-                if is_lowercase_letter(c):
-                    msg = msg + str(c)
-                elif c == b'!' and len(msg >= 5):
-                    yield msg
-                    msg = ''
-                else:
-                    msg = ''
+        while True:
+            c = input_file.read(1)
+            if not c:
+                break
+            if c.islower():
+                res += c.decode()
+            elif c == b'!':
+                if len(res) >= SIZE:
+                    yield res
+                    res = ''
+            else:
+                res = ''
 
 
 def main():
