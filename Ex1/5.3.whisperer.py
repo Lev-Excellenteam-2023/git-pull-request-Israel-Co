@@ -1,7 +1,15 @@
+# const vars
 SIZE = 5
+PATH = 'resources/logo.jpg'
 
 
 def print_secret_messages(path):
+    """
+    opening a file as binary, scanning it to find encoded messages.
+    The messages are lowercase alphabetical, at least 5 letters long and finish in exclamation mark <'!'>.
+    :param path: Path to the file
+    :return: Generator that return an decoded message each round
+    """
     res = ''
     with open(path, 'rb') as input_file:
         while True:
@@ -19,7 +27,7 @@ def print_secret_messages(path):
 
 
 def main():
-    for msg in print_secret_messages('logo.jpg'):
+    for msg in print_secret_messages(PATH):
         print(msg)
 
 
